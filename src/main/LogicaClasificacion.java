@@ -15,8 +15,11 @@ public class LogicaClasificacion {
      * @return nueva cola con los nombres en orden invertido
      */
     public Queue<String> invertirColaNombres(Queue<String> cola) {
-
-        return new LinkedList<>(Arrays.asList()); // Simulación de resultado
+        LinkedList<String> names = new LinkedList<>();
+        Stack<String> s = new Stack<>();
+        while (!cola.isEmpty()) s.push(cola.poll());
+        while (!s.isEmpty()) names.add(s.pop());
+        return names; // Simulación de resultado
     }
 
     /**
@@ -35,7 +38,19 @@ public class LogicaClasificacion {
      * @return nueva cola con elementos intercalados
      */
     public Queue<Integer> intercalarColas(Queue<Integer> cola1, Queue<Integer> cola2) {
-        return new LinkedList<>(Arrays.asList()); // Simulación de resultado
+        Queue<Integer> q = new ArrayDeque<>();
+        if (cola2.size()>=cola1.size()) {
+            while (!cola2.isEmpty()) {
+                if (!cola1.isEmpty()) q.add(cola1.poll());
+                if (!cola2.isEmpty()) q.add(cola2.poll());
+            }
+        } else {
+            while (!cola1.isEmpty()) {
+                if (!cola2.isEmpty()) q.add(cola2.poll());
+                if (!cola1.isEmpty()) q.add(cola1.poll());
+            }
+        }
+        return q; // Simulación de resultado
     }
 
 }
